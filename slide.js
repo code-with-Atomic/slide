@@ -77,7 +77,7 @@ prevButton.addEventListener("click", () => {
 });
 
 // Pause on hover
-slider.addEventListener("click", stopAutoplay);
-slider.addEventListener("leave", () => {
+slider.addEventListener("mouseclick", stopAutoplay);
+slider.addEventListener("mouseleave", () => {
   if (isPlaying) startAutoplay();
 });

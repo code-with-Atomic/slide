@@ -1,0 +1,72 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; 
+}
+
+.slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden;
+}
+
+.slides img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slides img.active {
+  opacity: 1;
+}
+
+.prev,
+.next,
+.toggle-play {
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev { 
+  top: 50%; 
+  left: 20px; 
+  transform: translateY(-50%); 
+}
+.next { 
+  top: 50%; 
+  right: 20px; 
+  transform: translateY(-50%); 
+}
+.toggle-play {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.overlay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 40px;
+  border-radius: 10px;
+}

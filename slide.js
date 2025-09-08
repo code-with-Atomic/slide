@@ -3,7 +3,6 @@ const slidesContainer = document.querySelector(".slides");
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 const overlay = document.querySelector(".overlay");
-const togglePlayButton = document.querySelector(".toggle-play");
 
 // Create dots container
 const dotsContainer = document.createElement("div");
@@ -15,10 +14,10 @@ let autoplayInterval;
 let isPlaying = true;
 
 // Overlay text
-overlay.innerHTML = '<h1>Welcome to Heavens Pride</h1> <p>We give the sweetness you never had</p>';
+overlay.innerHTML = '<h1>Welcome to the Growth hub Akure</h1> <p>We offer the best opportunity for your personal development </p>';
 
 // Images
-const imageSources = ["images/restaurant-interior.jpg", "images/nat11.jpg", "images/nat12.jpg", "images/nat10.jpg"];
+const imageSources = ["images/g3.jpg", "images/g2.jpg", "images/g4.jpg", "images/g5.jpg" , "images/67.jpg" , "images/g1.jpg" , "images/g6.jpg"];
 const slides = [];
 const dots = [];
 
@@ -41,13 +40,7 @@ imageSources.forEach((src, index) => {
   dots.push(dot);
 });
 
-function updateOverlay() {
-  if (currentSlide === 0) {
-    overlay.style.display = "block";
-  } else {
-    overlay.style.display = "none";
-  }
-}
+
 
 function updateDots() {
   dots.forEach((dot, i) => {
@@ -72,7 +65,7 @@ function showPrevSlide() {
 }
 
 function startAutoplay() {
-  stopAutoplay(); // clear any existing interval first
+  stopAutoplay();
   autoplayInterval = setInterval(showNextSlide, 3000);
 }
 
@@ -87,21 +80,8 @@ function restartAutoplay() {
   }
 }
 
-// Start autoplay once
+// Start autoplay
 startAutoplay();
-togglePlayButton.textContent = "⏸";
-
-// Toggle autoplay
-togglePlayButton.addEventListener("click", () => {
-  if (isPlaying) {
-    stopAutoplay();
-    togglePlayButton.textContent = "▶";
-  } else {
-    startAutoplay();
-    togglePlayButton.textContent = "⏸";
-  }
-  isPlaying = !isPlaying;
-});
 
 // Buttons
 nextButton.addEventListener("click", () => {

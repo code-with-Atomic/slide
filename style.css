@@ -57,16 +57,136 @@ html, body {
   transform: translateX(-50%);
 }
 
+p{
+  color: rgb(173, 193, 206);
+   font-family: cursive;
+}
+h1{
+  color: rgb(203, 203, 223);
+}
+
 .overlay {
   position: absolute;
-  top: 20%;
+  top: 35%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
   font-size: 2.5rem;
   text-align: center;
+  
   z-index: 10;
   background: rgba(0, 0, 0, 0.4);
   padding: 20px 40px;
   border-radius: 10px;
+  
+}
+
+
+
+.dots {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s;
+
+}
+
+.dot.active {
+  background: white;
+}
+
+
+
+@media screen and (max-width: 320px) { 
+  .overlay {
+    font-size: 0.7rem;
+    padding: 8px 16px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  .overlay {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* Medium phones (481px – 600px) - e.g. large Androids */
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  .overlay {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .overlay {
+    font-size: 1.2rem;
+    padding: 14px 28px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 12px;
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .overlay {
+    font-size: 1.3rem;
+    padding: 16px 32px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 12px;
+    font-size: 20px;
+  }
+}
+
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .overlay {
+    font-size: 1.5rem;
+    padding: 18px 36px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 14px;
+    font-size: 22px;
+  }
+}
+
+
+@media screen and (min-width: 1441px) {
+  .overlay {
+    font-size: 1.8rem;
+    padding: 20px 40px;
+  }
+  .prev, .next, .toggle-play {
+    padding: 16px;
+    font-size: 24px;
+  }
 }

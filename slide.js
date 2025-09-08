@@ -5,16 +5,22 @@ const nextButton = document.querySelector(".next");
 const overlay = document.querySelector(".overlay");
 const togglePlayButton = document.querySelector(".toggle-play");
 
+// Create dots container
+const dotsContainer = document.createElement("div");
+dotsContainer.classList.add("dots");
+slider.appendChild(dotsContainer);
+
 let currentSlide = 0;
 let autoplayInterval;
 let isPlaying = true;
 
 // Overlay text
-overlay.innerHTML = '<h1>Welcome to Heavens Pride</h1>';
+overlay.innerHTML = '<h1>Welcome to Heavens Pride</h1> <p>We give the sweetness you never had</p>';
 
 // Images
-const imageSources = ["images/nat10.jpg", "images/nat11.jpg", "images/nat12.jpg", "images/nat13.jpg"];
+const imageSources = ["images/restaurant-interior.jpg", "images/nat11.jpg", "images/nat12.jpg", "images/nat10.jpg"];
 const slides = [];
+const dots = [];
 
 imageSources.forEach((src, index) => {
   const img = document.createElement("img");
@@ -22,18 +28,47 @@ imageSources.forEach((src, index) => {
   if (index === 0) img.classList.add("active");
   slidesContainer.appendChild(img);
   slides.push(img);
+
+  // Create dot
+  const dot = document.createElement("span");
+  dot.classList.add("dot");
+  if (index === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => {
+    goToSlide(index);
+    restartAutoplay();
+  });
+  dotsContainer.appendChild(dot);
+  dots.push(dot);
 });
 
-function showNextSlide() {
+function updateOverlay() {
+  if (currentSlide === 0) {
+    overlay.style.display = "block";
+  } else {
+    overlay.style.display = "none";
+  }
+}
+
+function updateDots() {
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === currentSlide);
+  });
+}
+
+function goToSlide(index) {
   slides[currentSlide].classList.remove("active");
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide = index;
   slides[currentSlide].classList.add("active");
+  updateOverlay();
+  updateDots();
+}
+
+function showNextSlide() {
+  goToSlide((currentSlide + 1) % slides.length);
 }
 
 function showPrevSlide() {
-  slides[currentSlide].classList.remove("active");
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  slides[currentSlide].classList.add("active");
+  goToSlide((currentSlide - 1 + slides.length) % slides.length);
 }
 
 function startAutoplay() {
@@ -41,10 +76,15 @@ function startAutoplay() {
   autoplayInterval = setInterval(showNextSlide, 3000);
 }
 
-
-
 function stopAutoplay() {
   clearInterval(autoplayInterval);
+}
+
+function restartAutoplay() {
+  if (isPlaying) {
+    stopAutoplay();
+    startAutoplay();
+  }
 }
 
 // Start autoplay once
@@ -65,19 +105,20 @@ togglePlayButton.addEventListener("click", () => {
 
 // Buttons
 nextButton.addEventListener("click", () => {
-  stopAutoplay();
   showNextSlide();
-  if (isPlaying) startAutoplay();
+  restartAutoplay();
 });
 
 prevButton.addEventListener("click", () => {
-  stopAutoplay();
   showPrevSlide();
-  if (isPlaying) startAutoplay();
+  restartAutoplay();
 });
 
 // Pause on hover
-slider.addEventListener("mouseclick", stopAutoplay);
+slider.addEventListener("mouseenter", stopAutoplay);
 slider.addEventListener("mouseleave", () => {
   if (isPlaying) startAutoplay();
 });
+
+// Initialize overlay
+updateOverlay();

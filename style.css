@@ -51,11 +51,6 @@ html, body {
   right: 20px; 
   transform: translateY(-50%); 
 }
-.toggle-play {
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 
 
@@ -70,7 +65,7 @@ h1{
 
 .overlay {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
